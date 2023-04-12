@@ -48,8 +48,9 @@ let forceLangData: any
 let undo: any
 defineConfig('force_lang', '', v => {
     undo?.()
-    forceLangData = undefined
-    if (!v) return
+    if (!v)
+        return forceLangData = undefined
+    forceLangData = {} // necessary to make the embedded language work
     const res = watchLoad(code2file(v), data => {
         forceLangData = { [v]: JSON.parse(data) }
     })
